@@ -1,0 +1,17 @@
+h1{
+    color: blue;
+}
+
+.artigo{
+    width: 50%;
+    text-align: center;
+    margin: auto;
+}
+
+.navbar{
+    color:pink;
+}
+
+.navbar-item{
+    padding: 20px;
+}
