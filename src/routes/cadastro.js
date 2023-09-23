@@ -18,20 +18,9 @@ router.get("/novo", (req,res) =>{
 })
 
 //Método post: cadastrar novo usuario
-router.post("novo/add", (req, res) => {
-    const novoUsuario = {
-        name: req.body.name, //req.body.(nomeDoCampoNoHtml);
-        password: req.body.password,
-        damage: req.body.damage,
-        piercing: req.body.piercing,
-        critical: req.body.critical,
-        resist: req.body.resist
-    }
-    new userModel(novoUsuario).save().then(() =>{
-        console.log("Feito! ");
-    }).catch( (err) => {
-        console.log("ERRO AO SALVAR " + err);
-    })
+router.post("/add", (req, res) => {
+    const novoUsuario = req.body
+    res.json(novoUsuario);
 })
 
 //Exportando o modulo router
