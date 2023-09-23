@@ -9,20 +9,27 @@ const mongoose = require('mongoose');
 const path = require('path')
 const sequelize = require('sequelize')
 var bodyParser = require('body-parser');
+const cadastroRoute = require("./routes/cadastro");
 const app = express();
-const cadastro = require("./routes/cadastro");
 
+/**
+ * 
+ * Body Parser
+ * 
+ */
+    app.use(bodyParser.urlencoded({extended: true}));
+    app.use(bodyParser.json());
 /**
  * //Handlebar
  */
-app.engine('handlebars', exphbs.engine({ defaultLayout: 'main' }));
-app.set('view engine', 'handlebars');
+    app.engine('handlebars', exphbs.engine({ defaultLayout: 'main' }));
+    app.set('view engine', 'handlebars');
 ///Configurando o partials, handlebars
-const hbs = exphbs.create({
-    partialsDir: 'views/partials',
-  });
+    const hbs = exphbs.create({
+        partialsDir: 'views/partials',
+    });
 ////Selecionando a pasta public para arquivos estaticos como CSS
-app.use(express.static(path.join(__dirname, "public")))
+    app.use(express.static(path.join(__dirname, "public")))
 
 /**
  * Mongoose
@@ -35,11 +42,9 @@ async function connect(){
         console.log(err);
     }
 }
-
-
+connect();
 //////////Rotas///////////////
-app.get('/novo', cadastro);
-
+    app.use("/novo", cadastroRoute);
 /**
  * 
  * //Ligando o servidor/////
