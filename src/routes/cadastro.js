@@ -7,10 +7,10 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-require("../models/Usuario");
-const userModel = mongoose.model("usuario") //Precisa ser o exato nome da STRING
+//Importando schema com criptografia
+const criptoLogin = require("../controllers/criptoLogin");
+const User = require("../models/Usuario")
 
-// 
 
 //pagina cadastro principal
 router.get("/novo", (req,res) =>{
@@ -19,9 +19,24 @@ router.get("/novo", (req,res) =>{
 
 //Método post: cadastrar novo usuario
 router.post("/add", (req, res) => {
-    const novoUsuario = req.body
-    res.json(novoUsuario);
-})
+    const newUser = new User({
+        name: req.body.name,
+        password: req.body.password,
+        damage: req.body.damage,
+        piercing: req.body.piercing,
+        critical: req.body.critical
+    })
+    newUser.save().then((newUser => 
+        res.json({
+            mensagem: "Registrada com sucesso"
+        })
+    )).catch((erro) => {
+        res.json({
+            mensagem: "FALHOU BEM FALHA"
+        })
+    })
+});
+
 
 //Exportando o modulo router
 
