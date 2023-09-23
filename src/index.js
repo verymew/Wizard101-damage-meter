@@ -8,17 +8,16 @@ const exphbs = require('express-handlebars')
 const mongoose = require('mongoose');
 const path = require('path')
 const sequelize = require('sequelize')
-var bodyParser = require('body-parser');
 const cadastroRoute = require("./routes/cadastro");
 const app = express();
 
 /**
  * 
- * Body Parser
+ * Body Parser: Não é mais usado. É so usar o proprio express.
  * 
  */
-    app.use(bodyParser.urlencoded({extended: true}));
-    app.use(bodyParser.json());
+    app.use(express.urlencoded({extended: true}));
+    app.use(express.json());
 /**
  * //Handlebar
  */
@@ -44,7 +43,9 @@ async function connect(){
 }
 connect();
 //////////Rotas///////////////
-    app.use("/novo", cadastroRoute);
+    
+app.use("/cadastro", cadastroRoute);
+
 /**
  * 
  * //Ligando o servidor/////
