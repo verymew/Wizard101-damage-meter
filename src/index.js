@@ -4,10 +4,12 @@
  * 
  */
 const express = require('express');
-const exphbs = require('express-handlebars')
+const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
-const path = require('path')
-const sequelize = require('sequelize')
+const path = require('path');
+const sequelize = require('sequelize');
+//rotas
+const loginRoute = require("./routes/loginPage");
 const cadastroRoute = require("./routes/cadastro");
 const app = express();
 
@@ -45,6 +47,7 @@ connect();
 //////////Rotas///////////////
     
 app.use("/cadastro", cadastroRoute);
+app.use("/", loginRoute);
 
 /**
  * 
