@@ -8,7 +8,9 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 //Importando schema com criptografia
-const criptoLogin = require("../controllers/criptoLogin");
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+//importando schema de Usuario.
 const User = require("../models/Usuario")
 
 
@@ -18,21 +20,33 @@ router.get("/novo", (req,res) =>{
 })
 
 //Método post: cadastrar novo usuario
-router.post("/add", (req, res) => {
+router.post("/add", async (req, res) => {
+    //Resgatando conteudo do formulario
+    const { name, password, damage, piercing, critical } = req.body
+
+    //Criptografando a senha:
+    const salt = await bcrypt.genSalt(); //await vai fazer o programa resolver
+    const passHashed = await bcrypt.hash(password, salt);
+
+    //Passando dados para o schema
     const newUser = new User({
         name: req.body.name,
-        password: req.body.password,
+        password: passHashed,
         damage: req.body.damage,
         piercing: req.body.piercing,
         critical: req.body.critical
     })
-    newUser.save().then((newUser => 
+
+    //Registrando o schema no banco de dados
+    newUser.save()
+    .then((newUser) => {
         res.json({
-            mensagem: "Registrada com sucesso"
+            mensagem: "Registrada com sucesso!"
         })
-    )).catch((erro) => {
+    })
+    .catch((erro) => {
         res.json({
-            mensagem: "FALHOU BEM FALHA"
+            mensagem: erro
         })
     })
 });
