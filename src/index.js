@@ -16,6 +16,18 @@ const cadastroRoute = require("./routes/cadastro");
 const app = express();
 
 /**
+ * Sessões
+ */
+    app.use(session({
+        secret: 'very-mew-gato',
+        resave: true,
+        saveUninitialized: true
+    }))
+    app.use(flash())
+    
+    //Middlware
+
+/**
  * 
  * Body Parser: Não é mais usado. É so usar o proprio express.
  */

@@ -11,7 +11,17 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 //importando schema de Usuario.
-const User = require("../models/Usuario")
+const User = require("../models/Usuario");
+const Usuario = require('../models/Usuario');
+
+router.get("/teste", (req, res) => {
+    Usuario.findOne({ name: "ju" })
+    .then((info) => {
+        res.json(info.toJSON());
+    }).catch((err) =>{
+        res.status(500).json({ ERRO: "NAO DEU CERTO "})
+    })
+})
 
 
 //pagina cadastro principal
@@ -50,6 +60,8 @@ router.post("/add", async (req, res) => {
         })
     })
 });
+
+
 
 
 //Exportando o modulo router
