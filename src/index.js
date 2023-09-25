@@ -1,13 +1,15 @@
 /**
  * 
  * ////Módulos
- * 
  */
 const express = require('express');
 const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
 const path = require('path');
 const sequelize = require('sequelize');
+//sessoes
+const session = require('express-session')
+const flash = require('connect-flash');
 //rotas
 const loginRoute = require("./routes/loginPage");
 const cadastroRoute = require("./routes/cadastro");
@@ -16,10 +18,10 @@ const app = express();
 /**
  * 
  * Body Parser: Não é mais usado. É so usar o proprio express.
- * 
  */
     app.use(express.urlencoded({extended: true}));
     app.use(express.json());
+
 /**
  * //Handlebar
  */
@@ -44,15 +46,15 @@ async function connect(){
     }
 }
 connect();
-//////////Rotas///////////////
-    
-app.use("/cadastro", cadastroRoute);
+
+/**
+ * Rotas
+ */
+app.use("/", cadastroRoute);
 app.use("/", loginRoute);
 
 /**
- * 
- * //Ligando o servidor/////
- * /////////////////////////
+ * Ligando servidor
  */
 const PORT = 3000
 app.listen(PORT, (err, res) => {
