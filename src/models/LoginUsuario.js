@@ -1,6 +1,5 @@
-const mongoose = require('mongoose');
-
-const { Schema } = mongoose;
+const Mongoose = require('mongoose');
+const Schema = Mongoose;
 
 const usuarioSchema = new Schema ({
     name: {
@@ -26,10 +25,9 @@ const usuarioSchema = new Schema ({
     resist: {
         type: Number,
         require: true
-    }   
+    },
+    roles: {
+        type: [{ String }]
+    }
 })
 
-
-
-const Usuario = mongoose.model("usuario", usuarioSchema);
-module.exports = Usuario

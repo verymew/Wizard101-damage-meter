@@ -14,12 +14,25 @@ const jwt = require('jsonwebtoken')
 const User = require("../models/Usuario");
 const Usuario = require('../models/Usuario');
 
-router.get("/teste", (req, res) => {
+router.get("/teste/novo", (req, res) => {
     Usuario.findOne({ name: "ju" })
     .then((info) => {
         res.json(info.toJSON());
     }).catch((err) =>{
         res.status(500).json({ ERRO: "NAO DEU CERTO "})
+    })
+})
+
+router.get("/user/:id", (req, res) => {
+    const link = req.params
+    const userProcurar = Usuario.findOne({name: link})
+    .then((usuario) => {
+        res.json(usuario.toJSON())
+    })
+    .catch((erro) => {
+        res.json({
+            mensagem: "ERRO!!!!!!!!!!!!!!!!!!!!!!<"
+        })
     })
 })
 
