@@ -1,9 +1,10 @@
 const express = require('express')
 const Mongoose = require('mongoose');
 const Users = require('./Tabelausuario');
+const { default: mongoose } = require('mongoose');
 const {Schema} = Mongoose;
 
-const Enemy = new Schema({
+const postagem = new Schema({
     criador: {
         type: mongoose.Schema.Types.ObjectId,
         ref:'Users',
@@ -21,4 +22,8 @@ const Enemy = new Schema({
         required: true
     },
 })
+
+
+const Post = mongoose.model('Post', postagem);
+module.exports = Post;
 
