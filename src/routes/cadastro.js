@@ -11,8 +11,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 //importando schema de Usuario.
-const User = require("../models/Usuario");
-const Usuario = require('../models/Usuario');
+const Cadastro = require("../models/Cadastro");
 
 router.get("/teste/novo", (req, res) => {
     Usuario.findOne({ name: "ju" })
@@ -38,7 +37,7 @@ router.get("/user/:id", (req, res) => {
 
 
 //pagina cadastro principal
-router.get("/novo", (req,res) =>{
+router.get("/cadastro", (req,res) =>{
     res.render("cadastro");
 })
 
