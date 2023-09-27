@@ -1,28 +1,24 @@
-const { text } = require('body-parser');
-const express = require('express');
-const { default: mongoose } = require('mongoose');
-const Mongoose = require('mongoose')
+const express = require('express')
+const Mongoose = require('mongoose');
+const Users = require('./Tabelausuario');
 const {Schema} = Mongoose;
 
-const novaPostagem = new Schema({
-    tags: {
-        type: [{ type: String }]
+const Enemy = new Schema({
+    criador: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'Users',
     },
-    pnome: {
+    content: {
         type: String,
-        required: true
+        required: true,
     },
-    data: {
+    date: {
         type: Date,
-        default: Date.now
+        default: Date.now,
     },
-    idauthor: {
-        type: mongoose.Schema.type.ObjectId,
-        red: 'User'
-    },
-    conteudo: {
+    title: {
         type: String,
         required: true
-    }
+    },
 })
 
