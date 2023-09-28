@@ -32,4 +32,4 @@ const usuarioCadastro = new Schema ({
 })
 
 const Cadastro = mongoose.model('Cadastro', usuarioCadastro);
-module.exports = Cadastro;
+module.exports = Cadastro; //variavel exportada;
