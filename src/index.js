@@ -14,6 +14,8 @@ const flash = require('connect-flash');
 const loginRoute = require("./routes/loginPage");
 const cadastroRoute = require("./routes/cadastro");
 const app = express();
+const passport = require('passport')
+require("./config/auth")(passport); //Importando função de autenticação
 
 /**
  * Sessões
@@ -23,6 +25,9 @@ const app = express();
         resave: true,
         saveUninitialized: true
     }))
+    //Inicializando o passport.
+    app.use(passport.initialize())
+    app.use(passport.session())
     app.use(flash())
     
     //Usando o flash <

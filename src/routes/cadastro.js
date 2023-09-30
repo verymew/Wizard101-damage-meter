@@ -11,7 +11,10 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 //importando schema de Usuario.
-const Cadastro = require("../models/Cadastro");
+const Cadastro = require("../models/SchemaCadastro");
+const RegistrationService = require('../services/RegistrationService');
+//importando serviços
+require("../services/RegistrationService");
 
 router.get("/teste/novo", (req, res) => {
     Usuario.findOne({ name: "ju" })
@@ -46,9 +49,18 @@ router.post("/add", async (req, res) => {
     //Resgatando conteudo do formulario
     const { name, password, damage, piercing, critical } = req.body
 
+    //Checando se o usuario(nome) ja existe
+    const erros = new RegistrationService(name);
+    //Redirecionando para caso exista erros
+    if(erros.lenght > 0){
+        //Early return para pausar a requisição HTTP.
+        return res.render("/registro", {erro: erros});
+    } 
+    
+    //else
     //Criptografando a senha:
     const salt = await bcrypt.genSalt(); //await vai fazer o programa resolver
-    const passHashed = await bcrypt.hash(password, salt);
+    const passHashed = await bcrypt.hash(password, salt)
 
     //Passando dados para o schema
     const newUser = new User({
