@@ -50,13 +50,14 @@ router.post("/add", async (req, res) => {
     const { name, password, damage, piercing, critical } = req.body
 
     //Checando se o usuario(nome) ja existe
-    const erros = new RegistrationService(name);
+    //Como estamos lidando com banco de dados, usar função assíncrona.
+    const erros = await RegistrationService(name);
     //Redirecionando para caso exista erros
     if(erros.lenght > 0){
         //Early return para pausar a requisição HTTP.
         return res.render("/registro", {erro: erros});
     } 
-    
+
     //else
     //Criptografando a senha:
     const salt = await bcrypt.genSalt(); //await vai fazer o programa resolver
