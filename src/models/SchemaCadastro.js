@@ -1,5 +1,6 @@
+const { default: mongoose } = require('mongoose');
 const Mongoose = require('mongoose');
-const Schema = Mongoose;
+const { Schema }= Mongoose;
 
 const usuarioCadastro = new Schema ({
     name: {
@@ -31,5 +32,4 @@ const usuarioCadastro = new Schema ({
     }
 })
 
-const Cadastro = mongoose.model('Cadastro', usuarioCadastro);
-module.exports = Cadastro; //variavel exportada;
+module.exports = Mongoose.model("userdoc", usuarioCadastro)

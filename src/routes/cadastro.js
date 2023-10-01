@@ -14,29 +14,8 @@ const jwt = require('jsonwebtoken')
 const Cadastro = require("../models/SchemaCadastro");
 const RegistrationService = require('../services/RegistrationService');
 //importando serviços
-require("../services/RegistrationService");
+require("../services/RegistrationService"); //Registration service.
 
-router.get("/teste/novo", (req, res) => {
-    Usuario.findOne({ name: "ju" })
-    .then((info) => {
-        res.json(info.toJSON());
-    }).catch((err) =>{
-        res.status(500).json({ ERRO: "NAO DEU CERTO "})
-    })
-})
-
-router.get("/user/:id", (req, res) => {
-    const link = req.params
-    const userProcurar = Usuario.findOne({name: link})
-    .then((usuario) => {
-        res.json(usuario.toJSON())
-    })
-    .catch((erro) => {
-        res.json({
-            mensagem: "ERRO!!!!!!!!!!!!!!!!!!!!!!<"
-        })
-    })
-})
 
 
 //pagina cadastro principal
@@ -47,15 +26,16 @@ router.get("/cadastro", (req,res) =>{
 //Método post: cadastrar novo usuario
 router.post("/add", async (req, res) => {
     //Resgatando conteudo do formulario
-    const { name, password, damage, piercing, critical } = req.body
+    const { name, password, damage, piercing, critical, resist } = req.body
 
     //Checando se o usuario(nome) ja existe
     //Como estamos lidando com banco de dados, usar função assíncrona.
-    const erros = await RegistrationService(name);
+    const erros = await new RegistrationService(name, password, damage, piercing, critical, resist).eValido();
+
     //Redirecionando para caso exista erros
-    if(erros.lenght > 0){
+    if(erros.length > 0){
         //Early return para pausar a requisição HTTP.
-        return res.render("/registro", {erro: erros});
+        return res.render("cadastro", {erro: erros});
     } 
 
     //else
@@ -64,7 +44,7 @@ router.post("/add", async (req, res) => {
     const passHashed = await bcrypt.hash(password, salt)
 
     //Passando dados para o schema
-    const newUser = new User({
+    const newUser = new Cadastro({
         name: req.body.name,
         password: passHashed,
         damage: req.body.damage,

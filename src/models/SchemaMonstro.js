@@ -1,5 +1,5 @@
 const Mongoose = require('mongoose');
-const Schema = Mongoose;
+const {Schema} = Mongoose;
 
 new Monstro = new Schema({
     criador: {
@@ -25,4 +25,4 @@ new Monstro = new Schema({
 })
 
 const Monster = mongoose.model('Monstro', Monstro);
-module.exports = Monster;
+module.exports = Monster; //variavel exportada;

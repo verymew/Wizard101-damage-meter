@@ -1,3 +1,9 @@
+{{#each erros}}
+    <div class="alerta alerta-msg"><p>{{erros}}</p></div>
+{{else}}
+
+{{/each}}
+
 <form action="/add" method="post">
     Usuário: <br>
     <input type="text" name="name">
