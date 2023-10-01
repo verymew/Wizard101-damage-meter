@@ -13,6 +13,7 @@ const flash = require('connect-flash');
 //rotas
 const loginRoute = require("./routes/login");
 const cadastroRoute = require("./routes/cadastro");
+const userRoute = require("./routes/user");
 const app = express();
 const passport = require('passport')
 require("./config/auth")(passport); //Importando função de autenticação
@@ -73,6 +74,7 @@ connect();
  */
 app.use("/", cadastroRoute);
 app.use("/", loginRoute);
+app.use("/", userRoute);
 
 /**
  * Ligando servidor
