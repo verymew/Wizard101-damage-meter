@@ -18,27 +18,26 @@ class RegistrationService{
         const erros = []
 
         //Ver se o campo esta nulo
-        if(this.nome == null || this.nome || this.nome == undefined){
-            erros.push({mensagem: "Campo nulo."})
+        if(this.nome == null || !(this.nome) || this.nome == undefined){
+            erros.push({mensagem: "Nome nulo"})
         }
-        if(this.senha == null || this.senha || this.senha == undefined){
-            erros.push({mensagem: "Campo nulo."})
+        if(this.senha == null || !(this.senha) || this.senha == undefined){
+            erros.push({mensagem: "Senha nula."})
         }
-        if(this.dano == null || this.dano || this.dano == undefined){
-            erros.push({mensagem: "Campo nulo."})
+        if(this.dano == null || !(this.dano) || this.dano == undefined){
+            erros.push({mensagem: "Dano nulo."})
         }
-        if(this.piercing  == null || !this.piercing || this.piercing  == undefined){
-            erros.push({mensagem: "Campo nulo."})
+        if(this.piercing  == null || !(this.piercing) || this.piercing  == undefined){
+            erros.push({mensagem: "Piercing nulo."})
         }
-        if(this.critical == null || !this.critical || this.critical == undefined){
-            erros.push({mensagem: "Campo nulo."})
+        if(this.critical == null || !(this.critical) || this.critical == undefined){
+            erros.push({mensagem: "Critical nulo."})
         }
-        if(this.resist == null || !this.resist || this.resist == undefined){
-            erros.push({mensagem: "Campo nulo."})
+        if(this.resist == null || !(this.resist) || this.resist == undefined){
+            erros.push({mensagem: "Resist nulo."})
         }
 
-
-
+        //
         //Ver se o nome já existe no banco de dados
         const usuarioEncontrado = await Usuario.findOne({name: this.nome})
         if(usuarioEncontrado){

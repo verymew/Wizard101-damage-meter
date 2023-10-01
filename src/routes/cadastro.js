@@ -35,7 +35,7 @@ router.post("/add", async (req, res) => {
     //Redirecionando para caso exista erros
     if(erros.length > 0){
         //Early return para pausar a requisição HTTP.
-        return res.render("cadastro", {erro: erros});
+        return res.render("cadastro", {erros});
     } 
 
     //else
