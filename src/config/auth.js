@@ -5,10 +5,11 @@ const bcrypt = require('bcryptjs')
 const Usuario = require("../models/SchemaCadastro");
 
 
-module.exports = function(passport){
-    passport.use(new localStrategy({usernameField: 'nome', passwordField:'senha'}, (nome, senha, done) =>{
+
+module.exports = async function(passport){
+    passport.use(new localStrategy({usernameField: "nome", passwordField:"senha"}, (nome, senha, done) =>{
         //Procura o usuario no banco de dados.
-        Usuario.findOne({name: nome}).then((usuario =>{
+        Usuario.findOne({ name: nome }).then((usuario =>{
             if(!usuario){
                 //Se o usuario não existir, envia uma mensagem de erro.
                 return done(null, false, {mensagem: 'Essa conta não existe.'})
@@ -30,9 +31,12 @@ module.exports = function(passport){
         done(null, usuario.id)
     })
 
-    passport.deserializeUser((id, done) => {
-        Usuario.findById(id, (err, usuario) =>{
-            done(err, usuario)
-        })
-    })
+    passport.deserializeUser(async (id, done) => {
+        try {
+            const usuario = await Usuario.findById(id);
+            done(null, usuario);
+        } catch (err) {
+            done(err);
+        }
+    });
 }

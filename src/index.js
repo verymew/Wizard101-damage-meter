@@ -11,6 +11,7 @@ const sequelize = require('sequelize');
 const session = require('express-session')
 const flash = require('connect-flash');
 //rotas
+const loginRoute = require("./routes/login");
 const cadastroRoute = require("./routes/cadastro");
 const app = express();
 const passport = require('passport')
@@ -71,7 +72,7 @@ connect();
  * Rotas
  */
 app.use("/", cadastroRoute);
-//app.use("/", loginRoute);
+app.use("/", loginRoute);
 
 /**
  * Ligando servidor
