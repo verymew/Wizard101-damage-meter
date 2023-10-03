@@ -1,5 +1,7 @@
 const Mongoose = require('mongoose');
 const Usuario = require("../models/SchemaCadastro");
+//funções
+require("../utils/nullFieldValidation");
 
 class RegistrationService{
     //construtor
@@ -36,6 +38,7 @@ class RegistrationService{
         if(this.resist == null || !(this.resist) || this.resist == undefined){
             erros.push({mensagem: "Resist nulo."})
         }
+
 
         //
         //Ver se o nome já existe no banco de dados
