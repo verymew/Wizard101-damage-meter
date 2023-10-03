@@ -18,6 +18,7 @@ const app = express();
 const passport = require('passport')
 require("./config/auth")(passport); //Importando função de autenticação
 
+
 /**
  * Sessões
  */
