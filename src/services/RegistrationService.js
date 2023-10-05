@@ -2,6 +2,7 @@ const Mongoose = require('mongoose');
 const Usuario = require("../models/SchemaCadastro");
 //funções
 require("../utils/nullFieldValidation");
+const StatusError = require("../errors/StatusError");
 
 class RegistrationService{
     //construtor
@@ -13,11 +14,12 @@ class RegistrationService{
         this.critical = critical;
         this.resist = resist;
     }
+    //Atributos
+    erros = [];
     //Métodos
     //Vamos usar só um método para valida tudo
     //Função assíncrona, pois fará conexão com banco mongoDB
     async eValido(){
-        const erros = []
 
         //Ver se o campo esta nulo
         if(this.nome == null || !(this.nome) || this.nome == undefined){
@@ -44,7 +46,7 @@ class RegistrationService{
         //Ver se o nome já existe no banco de dados
         const usuarioEncontrado = await Usuario.findOne({name: this.nome})
         if(usuarioEncontrado){
-            erros.push({mensagem: "Usuário já existe."})
+            throw new StatusError("Usuário já existe.", 409)
         }
 
         return erros;
