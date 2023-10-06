@@ -16,6 +16,8 @@ const RegistrationService = require('../services/RegistrationService');
 //importando serviços
 require("../services/RegistrationService"); //Registration service.
 
+require("../errors/StatusError");
+
 
 
 //pagina cadastro principal
@@ -32,13 +34,19 @@ router.post("/add", async (req, res) => {
 
         //Checando se o usuario(nome) ja existe
         //Como estamos lidando com banco de dados, usar função assíncrona.
-        const erros = await new RegistrationService(name, password, damage, piercing, critical, resist).eValido();
+        const RegServ = new RegistrationService(name, password, damage, piercing, critical, resist);
 
+        //Verificando se existem campos nulos.
+        const erros = await RegServ.eValido();
+        //Verificando se existe o usuário.
+        
         //Redirecionando para caso exista erros
         if(erros.length > 0){
             //Early return para pausar a requisição HTTP.
-            return res.render("cadastro", {erros});
+            return res.status(400).render("cadastro", {erros});
          }
+
+        await RegServ.Registrar();
 
         //else
         //Criptografando a senha:
@@ -56,17 +64,12 @@ router.post("/add", async (req, res) => {
 
         //Registrando o schema no banco de dados
         newUser.save()
-        .then((_newUser) => {
-            res.json({
-                mensagem: "Registrada com sucesso!"
-            })
+        .then((newUser) => {
+            res.status(200).json({ Mensagem: "Usuário cadastrado! "})
         })
 
     }catch(error){
-
-        res.status(error.codigoStatus || 500).json({ 
-            Erro: error.mensagem
-        })
+        res.status(error.codigoStatus || 500).render("cadastro", {erro: "Erro interno."})
     }
 });
 

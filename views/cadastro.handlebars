@@ -3,6 +3,12 @@
     <p clas="alerta-msg">{{mensagem}}</p>
     {{else}}
     {{/each}}
+
+    {{#if erro}}
+    <p clas="alerta-msg">{{erro}}</p>
+    {{/if}}
+
+    
     <form action="/add" method="post">
         Usuário: <br>
         <input type="text" name="name">

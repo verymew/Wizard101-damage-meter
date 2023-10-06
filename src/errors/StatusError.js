@@ -1,6 +1,8 @@
 class StatusError extends Error{
-    constructor(mensagem, codigoStatus){
-        super(mensagem);
+    constructor(message, codigoStatus){
+        super(message);
         this.codigoStatus = codigoStatus;
     }
 }
+
+module.exports = StatusError;

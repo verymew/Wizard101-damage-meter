@@ -15,12 +15,12 @@ class RegistrationService{
         this.resist = resist;
     }
     //Atributos
-    erros = [];
+    
     //Métodos
     //Vamos usar só um método para valida tudo
     //Função assíncrona, pois fará conexão com banco mongoDB
     async eValido(){
-
+        const erros = [];
         //Ver se o campo esta nulo
         if(this.nome == null || !(this.nome) || this.nome == undefined){
             erros.push({mensagem: "Nome nulo"})
@@ -41,15 +41,14 @@ class RegistrationService{
             erros.push({mensagem: "Resist nulo."})
         }
 
+        return erros;
+    }
 
-        //
-        //Ver se o nome já existe no banco de dados
+    async Registrar(){
         const usuarioEncontrado = await Usuario.findOne({name: this.nome})
         if(usuarioEncontrado){
-            throw new StatusError("Usuário já existe.", 409)
+        throw new StatusError("Usuário já existe.", 409)
         }
-
-        return erros;
     }
 }
 
