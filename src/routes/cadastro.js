@@ -19,7 +19,7 @@ require("../services/RegistrationService"); //Registration service.
 
 
 //pagina cadastro principal
-router.get("/cadastro", (req,res) =>{
+router.get("/cadastro", (_req,res) =>{
     res.render("cadastro");
 })
 
@@ -38,7 +38,8 @@ router.post("/add", async (req, res) => {
         if(erros.length > 0){
             //Early return para pausar a requisição HTTP.
             return res.render("cadastro", {erros});
-        
+         }
+
         //else
         //Criptografando a senha:
         const salt = await bcrypt.genSalt(); //await vai fazer o programa resolver
@@ -55,20 +56,17 @@ router.post("/add", async (req, res) => {
 
         //Registrando o schema no banco de dados
         newUser.save()
-        .then((newUser) => {
+        .then((_newUser) => {
             res.json({
                 mensagem: "Registrada com sucesso!"
             })
         })
-        .catch((erro) => {
-            res.json({
-                mensagem: erro
-            })
-        })
-    } 
+
     }catch(error){
 
-        res.status(error.codigoStatus || 500).json({ Erro: error })
+        res.status(error.codigoStatus || 500).json({ 
+            Erro: error.mensagem
+        })
     }
 });
 
