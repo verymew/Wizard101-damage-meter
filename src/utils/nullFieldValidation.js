@@ -1,7 +1,5 @@
-function isNull(field, msg){
-    if(field == null || !(field) || field == undefined){
-        return { mensagem: msg }
-    }
+function isCampoNulo(campo) {
+    return campo === null || campo === undefined;
 }
 
-module.exports = isNull;
+module.exports = isCampoNulo;

@@ -57,12 +57,13 @@ require("./config/auth")(passport); //Importando função de autenticação
     });
 ////Selecionando a pasta public para arquivos estaticos como CSS
     app.use(express.static(path.join(__dirname, "public")))
+
 /**
- * Mongoose
+ * Conectando com o banco de dados
  */
 async function connect(){
     try{
-        mongoose.connect("mongodb+srv://verymew:KEsxzf6d17cruG58@cluster0.kdxxrun.mongodb.net/?retryWrites=true&w=majority");
+        mongoose.connect("mongodb://localhost:27017/test");
         console.log("Conectado!");
     } catch(err){
         console.log(err);

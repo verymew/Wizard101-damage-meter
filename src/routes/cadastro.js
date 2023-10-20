@@ -36,17 +36,10 @@ router.post("/add", async (req, res) => {
         //Como estamos lidando com banco de dados, usar função assíncrona.
         const RegServ = new RegistrationService(name, password, damage, piercing, critical, resist);
 
-        //Verificando se existem campos nulos.
-        const erros = await RegServ.eValido();
-        //Verificando se existe o usuário.
-        
-        //Redirecionando para caso exista erros
-        if(erros.length > 0){
-            //Early return para pausar a requisição HTTP.
-            return res.status(400).render("cadastro", {erros});
-         }
-
-        await RegServ.Registrar();
+        //Checar campos nulos
+        const campoNulo = await RegServ.eValido();
+        //Checar se existem usuarios iguais
+        const userExiste = await RegServ.Registrar();
 
         //else
         //Criptografando a senha:
@@ -69,7 +62,11 @@ router.post("/add", async (req, res) => {
         })
 
     }catch(error){
-        res.status(error.codigoStatus || 500).render("cadastro", {erro: "Erro interno."})
+
+        //O return é importante para impedir que o codigo continue executando apos o throw.
+        return res.status(error.codigoStatus || 500).json({
+            error: error.message
+        })
     }
 });
 
