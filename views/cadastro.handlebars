@@ -1,15 +1,10 @@
 <div class="maincard">
-    {{#each erros}}
-    <p clas="alerta-msg">{{mensagem}}</p>
-    {{else}}
-    {{/each}}
 
-    {{#if erro}}
-    <p clas="alerta-msg">{{erro}}</p>
+    {{#if error}}
+    <p clas="alerta-msg">{{error}}</p>
     {{/if}}
 
-    
-    <form action="/add" method="post">
+    <form action="/cadastro/enviar" method="post">
         Usuário: <br>
         <input type="text" name="name">
         </br>

@@ -26,7 +26,7 @@ router.get("/cadastro", (_req,res) =>{
 })
 
 //Método post: cadastrar novo usuario
-router.post("/add", async (req, res) => {
+router.post("/cadastro/enviar", async (req, res) => {
     try{
 
         //Resgatando conteudo do formulario
@@ -63,9 +63,7 @@ router.post("/add", async (req, res) => {
 
     }catch(error){
         //O return é importante para impedir que o codigo continue executando apos o throw.
-        return res.status(error.codigoStatus || 500).json({
-            error: "Erro interno"
-        })
+        return res.status(error.codigoStatus || 500).render("cadastro", {error: error.message})
     }
 });
 
