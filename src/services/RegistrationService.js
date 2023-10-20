@@ -14,8 +14,6 @@ class RegistrationService{
         this.critical = critical;
         this.resist = resist;
     }
-    //Atributos
-    
     //Métodos
     //Vamos usar só um método para valida tudo
     //Função assíncrona, pois fará conexão com banco mongoDB

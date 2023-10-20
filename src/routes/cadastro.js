@@ -62,10 +62,9 @@ router.post("/add", async (req, res) => {
         })
 
     }catch(error){
-
         //O return é importante para impedir que o codigo continue executando apos o throw.
         return res.status(error.codigoStatus || 500).json({
-            error: error.message
+            error: "Erro interno"
         })
     }
 });
