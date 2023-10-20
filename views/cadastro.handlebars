@@ -1,21 +1,36 @@
-<form action="/cadastro/novo/add" method="post">
-    Usuário: <br>
-    <input type="text" name="name">
-    </br>
-    Password: <br>
-    <input type="password" name="password">
-    </br>
-    Damage: <br>
-    <input type="number" name="damage">
-    </br>
-    Piercing: <br>
-    <input type="number" name="piercing">
-    </br>
-    Critical Chance: <br>
-    <input type="number" name="critical">
-    </br>
-    Resist: <br>
-    <input type="number" name="resist">
-    </br>
-    <button type="submit">Cadastrar</button>
-</form>
+<div class="maincard">
+    {{#each erros}}
+    <p clas="alerta-msg">{{mensagem}}</p>
+    {{else}}
+    {{/each}}
+
+    {{#if erro}}
+    <p clas="alerta-msg">{{erro}}</p>
+    {{/if}}
+
+    
+    <form action="/add" method="post">
+        Usuário: <br>
+        <input type="text" name="name">
+        </br>
+        Password: <br>
+        <input type="password" name="password">
+        </br>
+        Damage: <br>
+        <input type="number" name="damage">
+        </br>
+        Piercing: <br>
+        <input type="number" name="piercing">
+        </br>
+        Critical Chance: <br>
+        <input type="number" name="critical">
+        </br>
+        Resist: <br>
+        <input type="number" name="resist">
+        </br>
+        <button type="submit">Cadastrar</button>
+    </form>
+</div>
+<script>
+    //Scripts podem ser colocados dentro de formularioss;
+</script>

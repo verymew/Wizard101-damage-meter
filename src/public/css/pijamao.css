@@ -1,0 +1,12 @@
+.alerta-msg{
+    margin: auto;
+    text-align: center;
+    color: black;
+}
+
+.maincard{
+    margin: auto;
+    text-align: center;
+    border-color: black;
+    border-radius: 10px;
+}
