@@ -22,3 +22,18 @@
     text-align: center;
     margin: auto;
 }
+
+.img-card{
+    width: 150px;
+}
+
+  @media screen and (max-width: 900px) {
+      .main{
+      width:50%;
+      text-align: center;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      }
+  }

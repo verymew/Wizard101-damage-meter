@@ -19,7 +19,7 @@ router.get("/cadastro", (_req,res) =>{
 })
 
 //Método post: cadastrar novo usuario
-router.post('/cadastro/enviar', registrationController.criarUsuario);
+router.post("/cadastro/enviar", registrationController.criarUsuario);
 
 
 //Exportando o modulo router

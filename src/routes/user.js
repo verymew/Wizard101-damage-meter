@@ -9,6 +9,9 @@ const Cadastro = require("../models/SchemaCadastro");
 //funções
 const ensureAuth = require("../utils/authIsValid");
 
+//controllers
+const monsterController = require('../controllers/monsterRegistrationController');
+
 Router.get("/user", ensureAuth, async (req, res) =>{
     const userInf = req.user;
     
@@ -20,6 +23,12 @@ Router.get("/user", ensureAuth, async (req, res) =>{
     //})
     res.render("usuario", resistencia);
 })
+
+/*Rota para edição do inimigo*/
+/*GET*/
+Router.get("/user/monster", ensureAuth, monsterController.paginaMonstro);
+/*Post*/
+Router.post("/user/monster/register", ensureAuth, monsterController.registrarMonstro);
 
 //Sempre exportar o módulo
 module.exports = Router;
