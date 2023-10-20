@@ -10,3 +10,15 @@
     border-color: black;
     border-radius: 10px;
 }
+
+.main{
+    width: 50%;
+    text-align: center;
+    margin: auto;
+    display: flex;
+}
+
+.header{
+    text-align: center;
+    margin: auto;
+}

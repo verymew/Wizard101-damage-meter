@@ -1,30 +1,33 @@
-<div class="maincard">
+<div class="main">
+    <div class="maincard">
+        {{#if error}}
+        <p clas="alerta-msg">{{error}}</p>
+        {{/if}}
 
-    {{#if error}}
-    <p clas="alerta-msg">{{error}}</p>
-    {{/if}}
-
-    <form action="/cadastro/enviar" method="post">
-        Usuário: <br>
-        <input type="text" name="name">
-        </br>
-        Password: <br>
-        <input type="password" name="password">
-        </br>
-        Damage: <br>
-        <input type="number" name="damage">
-        </br>
-        Piercing: <br>
-        <input type="number" name="piercing">
-        </br>
-        Critical Chance: <br>
-        <input type="number" name="critical">
-        </br>
-        Resist: <br>
-        <input type="number" name="resist">
-        </br>
-        <button type="submit">Cadastrar</button>
-    </form>
+        <form action="/cadastro/enviar" method="post">
+            Usuário: <br>
+            <input type="text" name="name">
+            </br>
+            Password: <br>
+            <input type="password" name="password">
+            </br>
+            Damage: <br>
+            <input type="number" name="damage">
+            </br>
+            Piercing: <br>
+            <input type="number" name="piercing">
+            </br>
+            Critical Chance: <br>
+            <input type="number" name="critical">
+            </br>
+            Resist: <br>
+            <input type="number" name="resist">
+            </br>
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary">Cadastrar</button>
+            </div>
+        </form>
+    </div>
 </div>
 <script>
     //Scripts podem ser colocados dentro de formularioss;
