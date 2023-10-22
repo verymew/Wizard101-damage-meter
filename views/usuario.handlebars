@@ -1,15 +1,19 @@
 
     <section class="main">
         <div class="card text-center mb-3 text-bg-dark mb-3" style="margin: 15px 15px; width: 18rem;">
+            {{#if fichaUser}}
             <div class="card-body">
-                <h5 class="card-title">{{name}}</h5>
+                <h5 class="card-title">{{fichaUser.name}}</h5>
                 <img src="\img\t1.png" class="img-card" style="width: 150px;" alt="...">
-              </div>
+            </div>
+            {{/if}}
+            {{#if fichaUser}}
               <ul class="list-group list-group-flush">
-                <li class="list-group-item list-group-item-dark">Damage: {{damage}}</li>
-                <li class="list-group-item list-group-item-dark">Piercing: {{piercing}}</li>
-                <li class="list-group-item list-group-item-dark">Critical: {{critical}}</li>
+                <li class="list-group-item list-group-item-dark">Damage: {{fichaUser.damage}}%</li>
+                <li class="list-group-item list-group-item-dark">Piercing: {{fichaUser.piercing}}%</li>
+                <li class="list-group-item list-group-item-dark">Critical: {{fichaUser.critical}}</li>
               </ul>
+            {{/if}}
               <div class="card-body">
                 <a href="#" class="btn btn-outline-light">Editar</a>
               </div>
@@ -20,16 +24,15 @@
                 <img src="\img\t2.png" class="card-img-top" style="width: 150px;" alt="...">
               </div>
 
-            {{#if monstro}}
+            {{#if fichaMonster}}
               <ul class="list-group list-group-flush">
-                <li class="list-group-item list-group-item-dark">Resist: </li>
-                <li class="list-group-item list-group-item-dark">Incoming Boost: </li>
-                <li class="list-group-item list-group-item-dark">Incoming Resist: </li>
+                <li class="list-group-item list-group-item-dark">Resist: {{fichaMonster.resist}}%</li>
+                <li class="list-group-item list-group-item-dark">Incoming Boost: {{fichaMonster.incomingboost}}%</li>
             {{/if}}
 
               </ul>
               <div class="card-body">
-                {{#if monstro}}
+                {{#if fichaMonster}}
                     <a href="/user/monster" class="btn btn-outline-light">Editar</a>
                 {{/if}}
                 <a href="/user/monster" class="btn btn-outline-light">Registrar</a>
@@ -41,7 +44,7 @@
                 <img src="\img\t3.png" class="card-img-top" style="width: 150px;" alt="...">
               </div>
               <div class="card-body">
-                {{#if monstro}}
+                {{#if fichaMonster}}
                 <a href="#" class="btn btn-outline-light">Iniciar</a>
                 {{else}}
                 <p>Registre um inimigo para iniciar o combate!</p>

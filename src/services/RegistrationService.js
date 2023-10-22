@@ -36,6 +36,7 @@ class RegistrationService{
         throw new StatusError("Usuário já existe.", 409)
         }
     }
+    
 }
 
 module.exports = RegistrationService

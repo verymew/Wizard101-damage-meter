@@ -6,29 +6,25 @@ const Router = express.Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
 const Cadastro = require("../models/SchemaCadastro");
+//services
+const monstroFerramentas = require("../services/MonsterService");
 //funções
 const ensureAuth = require("../utils/authIsValid");
-
 //controllers
 const monsterController = require('../controllers/monsterRegistrationController');
+const fichasDatasController = require('../controllers/userController');
+const userController = require('../controllers/userController')
 
-Router.get("/user", ensureAuth, async (req, res) =>{
-    const userInf = req.user;
-    
-    //Procurando nome no banco de dados para achar ID
-    const resistencia = await Cadastro.findOne({ name: userInf.name})
-    //res.render("usuario", userInf)
-    //res.json({
-    //    Resistencia: resistencia.damage
-    //})
-    res.render("usuario", resistencia);
-})
+Router.get("/user", ensureAuth, userController.recuperarDadosGerais);
 
 /*Rota para edição do inimigo*/
 /*GET*/
 Router.get("/user/monster", ensureAuth, monsterController.paginaMonstro);
 /*Post*/
 Router.post("/user/monster/register", ensureAuth, monsterController.registrarMonstro);
+
+/*Rota Para recuperar dados com o front*/
+Router.get("/user/userdata", ensureAuth, fichasDatasController.recuperarDadosGerais);
 
 //Sempre exportar o módulo
 module.exports = Router;

@@ -32,11 +32,12 @@ exports.criarUsuario = async (req, res) => {
 
         //Passando dados para o schema
         const newUser = new Cadastro({
-            name: req.body.name,
+            name: name,
             password: passHashed,
-            damage: req.body.damage,
-            piercing: req.body.piercing,
-            critical: req.body.critical
+            damage: damage,
+            piercing: piercing,
+            critical: critical,
+            resist: resist
         })
 
         //Registrando o schema no banco de dados

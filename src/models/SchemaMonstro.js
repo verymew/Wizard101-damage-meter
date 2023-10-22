@@ -1,11 +1,10 @@
-const Mongoose = require('mongoose');
-const {Schema} = Mongoose;
+const mongoose = require('mongoose');
+const {Schema} = mongoose;
 
 const Monstro = new Schema({
     criador: {
-        type: Mongoose.Schema.Types.ObjectId,
+        type: mongoose.Types.ObjectId,
         required: true,
-        ref:'Users',
     },
     damage: {
         type: Number,
@@ -22,8 +21,12 @@ const Monstro = new Schema({
     incomingboost: {
         type: Number,
         required: true
+    },
+    role: { 
+        type: Number,
     }
 })
 
-const Monster = Mongoose.model('Monstro', Monstro);
+
+const Monster = mongoose.model('Monstro', Monstro);
 module.exports = Monster; //variavel exportada;

@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
 /*Schemas*/
 const userBase = require("../models/SchemaCadastro");
-const monstroRegistro = require("../models/SchemaMonstro");
+const monstroFicha = require("../models/SchemaMonstro");
 const MonstroFerramentas = require("../services/MonsterService");
+const StatusError = require("../errors/StatusError");
+
 
 /*
     Get
@@ -11,9 +13,12 @@ exports.paginaMonstro = async(req, res) =>{
     /*Service para procurar ID*/
     try{
         //Procurando o ID para usar no registro de monstro
-        const userInf = await req.user.id;
+        const userInf = req.user.id;
+        
+
+
         //Enviando o id para o Html.
-        res.status(200).render("monstro", {userInf});
+        res.status(200).render("monstro", { userInf });
     }catch(error){
         res.json({
             erro: error
@@ -28,17 +33,19 @@ exports.registrarMonstro = async (req, res) => {
     try{
         const { idcriador, damage, piercing, resist, incomingbo } = req.body;
 
-        const Registrar = new monstroRegistro({
-            criador: idcriador,
-            incomingboost: incomingbo,
-            damage: damage,
-            piercing: piercing, 
-            resist: resist
-        })
+        //Registrar monstro
+        const registroMonstro = new MonstroFerramentas();
+        const idUser = new mongoose.Types.ObjectId(req.user.id);
+        await registroMonstro.registrarMonstro(idUser, damage, piercing, resist, incomingbo);
+        
+        res.status(200).redirect("/user");
 
-        Registrar.save()
-    }catch(erro){
+    }catch(error){
 
+        //return nos erros para pausar o codigo
+        return res.status(error.codigoStatus || 500).json({
+            erro: error.message
+        }) 
     }
 
     /*
