@@ -8,9 +8,9 @@ const tryLogar = require('../controllers/loginController');
 
 Router.get("/login", (req, res) =>{
     try{
-
-    res.status(200).render("login");
-
+     
+    const errorMessage = req.flash('error')[0];   
+    res.status(200).render("login",{error: errorMessage});
     }catch(error){
         res.status(500).json({
             erro: error

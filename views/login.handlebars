@@ -1,5 +1,10 @@
 <div class="maincard">
     <form action="/login" method="post">
+        {{#if error}}
+        <div class="alert alert-danger" role="alert">
+        {{error}}
+        </div>
+        {{/if}}
         Usuário: <br>
         <input type="text" name="nome">
         <br>
