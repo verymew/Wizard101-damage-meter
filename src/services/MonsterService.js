@@ -4,18 +4,41 @@ const StatusError = require("../errors/StatusError");
 
 class MonstroFerramentas{
 
-    //Procura a ficha do monstro pelo ID e pela role 1
-    //Retorna em JSON
+    /*
+        Método para buscar ficha (busca primeiro com role 1)
+        Role 1 = ficha principal.
+    */
     async fichaMonstro(userid){
+        //Procura a ficha do monstro pelo ID e pela role 1
         const fichaDoMonstro = await monstroRegistro.findOne({criador: userid, role: 1}).lean();
+
+        //Se não achar um com a role 1, procurar outro
         if(!fichaDoMonstro){
-            return null;
-        }
+            //Mandar uma alternativa com a role 0
+            const fichaDoMonstroWithoutRole = await monstroRegistro.findOne({
+                criador: userid
+            }).lean()
+            .catch((error) =>{
+                throw new StatusError("Não há nenhum registro.", 404)
+            });
 
+            //Se não encontrar nenhuma ficha, retorna null.
+            if(!(fichaDoMonstroWithoutRole)){
+                return null;
+            }
+
+            //Se tudo der certo, retorna a primeira ficha com role 1
+            return fichaDoMonstroWithoutRole;
+        };
+        
+        //Se tudo der certo, retorna a ficha em formato JSON.
         return fichaDoMonstro;
-    }
+    };
 
-    //Registro de ficha de monstro
+
+    /*
+        Metódo de registro de ficha de monstro.
+    */
     async registrarMonstro(userid, damage, piercing, resist, incomingbo){
         //Verificar campos nulos
         if(
