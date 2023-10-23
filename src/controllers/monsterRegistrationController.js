@@ -56,12 +56,15 @@ exports.registrarMonstro = async (req, res) => {
 
 exports.deletarMonstro = async(req, res) => {
     try{
+
+        const idUser = new mongoose.Types.ObjectId(req.user.id);
         const idMonstro = new mongoose.Types.ObjectId(req.params.id);
 
         const ferramentaM = new MonstroFerramentas();
-        
-        const deletarM = await monstroFicha.deleteOne({_id: idMonstro})
+        //Deletar
+        await ferramentaM.deletarM(idMonstro, idUser);
 
+        //Sucesso
         res.status(200).json({mensagem: "DELETADO!"})
 
     }catch(error){

@@ -24,7 +24,7 @@ Router.get("/user/monster", ensureAuth, monsterController.paginaMonstro);
 Router.post("/user/monster/register", ensureAuth, monsterController.registrarMonstro);
 
 /*Rota de remoção de monstro*/
-Router.delete("/user/:id", monsterController.deletarMonstro);
+Router.delete("/user/:id", ensureAuth, monsterController.deletarMonstro);
 
 /*Rota para editar monstro*/
 

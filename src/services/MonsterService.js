@@ -67,9 +67,8 @@ class MonstroFerramentas{
     }
 
     /*Deletar monstro*/
-    async deletarM(idMonstro){
-        
-        const deletarmonstro = await monstroRegistro.deleteOne({_id: idMonstro })
+    async deletarM(idMonstro, idUser){
+        const deletarmonstro = await monstroRegistro.deleteOne({_id: idMonstro, criador: idUser })
         .catch(error =>{
             throw new StatusError("Não foi deletado com sucesso.", 400);
         })
