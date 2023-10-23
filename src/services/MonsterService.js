@@ -66,6 +66,15 @@ class MonstroFerramentas{
         return fichasMonstros;
     }
 
+    /*Deletar monstro*/
+    async deletarM(idMonstro){
+        
+        const deletarmonstro = await monstroRegistro.deleteOne({_id: idMonstro })
+        .catch(error =>{
+            throw new StatusError("Não foi deletado com sucesso.", 400);
+        })
+    }
+
 }
 
 module.exports = MonstroFerramentas;

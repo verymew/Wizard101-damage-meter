@@ -1,6 +1,6 @@
-<section class="main" id="listamonstros">
+<section class="listamonstros">
     {{#each fichaMonster}}
-    <div class="card text-center mb-3 text-bg-dark mb-3" style="margin: 15px 15px; width: 100%;">
+    <div class="card text-center mb-3 text-bg-dark mb-3 cardlistamonstros" style="margin: 15px 15px;">
         <div class="card-body">
             <h5 class="card-title">Monstro name</h5>
             <img src="\img\t1.png" class="img-card" style="width: 150px;" alt="...">
@@ -12,6 +12,11 @@
             <li class="list-group-item list-group-item-dark">Piercing: {{piercing}}</li>
             <li class="list-group-item list-group-item-dark">Incoming Boost: {{incomingboost}}%</li>
         </ul>
+        <div class="botoesM" style="display:flex;flex-direction: column;">
+            <button type="button" onclick="excluirM('{{_id}}')" class="btn btn-outline-success" style="margin: 15px 15px;">Utilizar</button>
+            <button type="submit" class="btn btn-outline-danger" style="margin: 15px 15px;">Remover</button>
+            <button type="submit" class="btn btn-outline-warning" style="margin: 15px 15px;">Editar</button>
+        </div>
     </div>
     {{/each}}
 </section>

@@ -33,8 +33,6 @@ exports.listarTodosMonstros = async(req, res) => {
         const ferramentasM = new monstroFerramentas();
         const fichaMonster = await ferramentasM.getTodosMonstros(userId);
 
-
-
         res.status(200).render("listamonstros", { fichaMonster });
 
     }catch(error){

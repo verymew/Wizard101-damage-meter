@@ -26,9 +26,18 @@
 
 /*/Header*/
 
-#listamonstros{
+.listamonstros{
+    display: flex;
     flex-direction: column;
+    align-items: center;
+
 }
+
+/*#Lista de monstros do usuario*/
+.cardlistamonstros{
+    width: 500px;
+}
+/* /Lista de monstros do usuario*/
 
 .img-card{
     width: 150px;
@@ -36,16 +45,26 @@
 
   @media screen and (max-width: 1250px) {
       .main{
-      width:50%;
       text-align: center;
       margin: auto;
       display: flex;
       flex-direction: column;
       align-items: center;
       }
-      /*#header*/
+    /*#header*/
     .header img{
         width: 350px;
     }
-      /*/header*/
+    /*/header*/
+
+    /*#Lista de monstros do usuario*/
+    .cardlistamonstros {
+        width: 250px;
+    }
+    .listamonstros{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    /*/Lista de monstros do usuario*/
   }

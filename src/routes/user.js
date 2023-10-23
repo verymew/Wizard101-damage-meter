@@ -17,11 +17,22 @@ const userController = require('../controllers/userController')
 
 Router.get("/user", ensureAuth, userController.recuperarDadosGerais);
 
-/*Rota para edição do inimigo*/
+/*#Rota para edição do inimigo*/
 /*GET*/
 Router.get("/user/monster", ensureAuth, monsterController.paginaMonstro);
 /*Post*/
 Router.post("/user/monster/register", ensureAuth, monsterController.registrarMonstro);
+
+/*Rota de remoção de monstro*/
+Router.delete("/user/:id", monsterController.deletarMonstro);
+
+/*Rota para editar monstro*/
+
+/*Rota para escolher monstro como principal*/
+
+//Sempre exportar o módulo
+
+/* /Rota para edição do inimigo*/
 
 /*Rota Para recuperar dados com o front*/
 Router.get("/user/userdata", ensureAuth, fichasDatasController.recuperarDadosGerais);
@@ -29,5 +40,5 @@ Router.get("/user/userdata", ensureAuth, fichasDatasController.recuperarDadosGer
 /*Rota para mostrar todos os monstros do usuario*/
 Router.get("/user/monster/list", ensureAuth, userController.listarTodosMonstros);
 
-//Sempre exportar o módulo
+
 module.exports = Router;
