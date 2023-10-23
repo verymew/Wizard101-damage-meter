@@ -62,7 +62,7 @@ exports.deletarMonstro = async(req, res) => {
         
         const deletarM = await monstroFicha.deleteOne({_id: idMonstro})
 
-        res.json({mensagem: "DELETADO!"})
+        res.status(200).json({mensagem: "DELETADO!"})
 
     }catch(error){
 

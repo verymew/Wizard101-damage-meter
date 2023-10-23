@@ -1,3 +1,21 @@
+<script>
+    async function excluirM(idMonstro) {
+        try {
+            const deletemonster = await fetch(`/user/${idMonstro}`, {
+                method: 'DELETE',
+            });
+
+            if(deletemonster.status == 200){
+                console.log("Deletado")
+                window.location.reload();
+            }
+            
+        } catch (error) {
+            return console.log(error);
+        }
+    }
+</script>
+
 <section class="listamonstros">
     {{#each fichaMonster}}
     <div class="card text-center mb-3 text-bg-dark mb-3 cardlistamonstros" style="margin: 15px 15px;">
@@ -20,3 +38,5 @@
     </div>
     {{/each}}
 </section>
+
+
