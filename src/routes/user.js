@@ -26,5 +26,8 @@ Router.post("/user/monster/register", ensureAuth, monsterController.registrarMon
 /*Rota Para recuperar dados com o front*/
 Router.get("/user/userdata", ensureAuth, fichasDatasController.recuperarDadosGerais);
 
+/*Rota para mostrar todos os monstros do usuario*/
+Router.get("/user/monster/list", ensureAuth, userController.listarTodosMonstros);
+
 //Sempre exportar o módulo
 module.exports = Router;

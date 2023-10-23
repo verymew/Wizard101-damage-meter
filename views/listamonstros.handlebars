@@ -1,0 +1,17 @@
+<section class="main" id="listamonstros">
+    {{#each fichaMonster}}
+    <div class="card text-center mb-3 text-bg-dark mb-3" style="margin: 15px 15px; width: 100%;">
+        <div class="card-body">
+            <h5 class="card-title">Monstro name</h5>
+            <img src="\img\t1.png" class="img-card" style="width: 150px;" alt="...">
+        </div>
+        <ul class="list-group list-group-flush">
+            <input type="hidden" name="idmonstro" value="{{_id}}">
+            <li class="list-group-item list-group-item-dark">Damage: {{damage}}%</li>
+            <li class="list-group-item list-group-item-dark">Resist: {{resist}}%</li>
+            <li class="list-group-item list-group-item-dark">Piercing: {{piercing}}</li>
+            <li class="list-group-item list-group-item-dark">Incoming Boost: {{incomingboost}}%</li>
+        </ul>
+    </div>
+    {{/each}}
+</section>

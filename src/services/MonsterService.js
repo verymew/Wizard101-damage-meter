@@ -52,6 +52,20 @@ class MonstroFerramentas{
         Registrar.save();
     }
 
+    //Método para enviar TODAS as fichas do usuário
+    //recebe um new moongoose.Type.ObjectId
+    async getTodosMonstros(userid){
+        const fichasMonstros = await monstroRegistro.find({
+            //filtros
+            criador: userid
+        }).lean();
+        if(!fichasMonstros){
+            throw new StatusError("Nenhum monstro encontrado.", 404);
+        }
+        
+        return fichasMonstros;
+    }
+
 }
 
 module.exports = MonstroFerramentas;

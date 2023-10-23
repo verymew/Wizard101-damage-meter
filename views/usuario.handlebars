@@ -1,6 +1,6 @@
 
     <section class="main">
-        <div class="card text-center mb-3 text-bg-dark mb-3" style="margin: 15px 15px; width: 18rem;">
+        <div class="card text-center mb-3 text-bg-dark mb-3" style="margin: 15px 15px; width: 100%;">
             {{#if fichaUser}}
             <div class="card-body">
                 <h5 class="card-title">{{fichaUser.name}}</h5>
@@ -18,7 +18,7 @@
                 <a href="#" class="btn btn-outline-light">Editar</a>
               </div>
         </div>
-        <div class="card text-center mb-3" style="margin: 15px 15px; width: 18rem;">
+        <div class="card text-center mb-3" style="margin: 15px 15px; width: 100%;">
             <div class="card-body">
                 <h5 class="card-title">Inimigo</h5>
                 <img src="\img\t2.png" class="card-img-top" style="width: 150px;" alt="...">
@@ -33,12 +33,12 @@
               </ul>
               <div class="card-body">
                 {{#if fichaMonster}}
-                    <a href="/user/monster" class="btn btn-outline-light">Editar</a>
+                    <a href="/user/monster/list" class="btn btn-outline-light">Trocar</a>
                 {{/if}}
                 <a href="/user/monster" class="btn btn-outline-light">Registrar</a>
               </div>
         </div>
-        <div class="card text-center mb-3" style="margin: 15px 15px; width: 18rem;">
+        <div class="card text-center mb-3" style="margin: 15px 15px; width: 100%">
             <div class="card-body">
                 <h5 class="card-title">Combate</h5>
                 <img src="\img\t3.png" class="card-img-top" style="width: 150px;" alt="...">

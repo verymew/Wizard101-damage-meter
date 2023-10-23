@@ -18,16 +18,23 @@
     display: flex;
 }
 
+/*#Header*/
 .header{
     text-align: center;
     margin: auto;
+}
+
+/*/Header*/
+
+#listamonstros{
+    flex-direction: column;
 }
 
 .img-card{
     width: 150px;
 }
 
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 1250px) {
       .main{
       width:50%;
       text-align: center;
@@ -36,4 +43,9 @@
       flex-direction: column;
       align-items: center;
       }
+      /*#header*/
+    .header img{
+        width: 350px;
+    }
+      /*/header*/
   }
