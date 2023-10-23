@@ -1,21 +1,55 @@
-<div class="maincard">
-    <div class="usercard">
-        <div class="usercardinfo">
-            <h1>{{name}}</h1>
-            <br>
-            <h1>{{damage}}</h1> 
-            <br>
-            <h1></h1>            
+
+    <section class="main">
+        <div class="card text-center mb-3 text-bg-dark mb-3" style="margin: 15px 15px; width: 100%;">
+            {{#if fichaUser}}
+            <div class="card-body">
+                <h5 class="card-title">{{fichaUser.name}}</h5>
+                <img src="\img\t1.png" class="img-card" style="width: 150px;" alt="...">
+            </div>
+            {{/if}}
+            {{#if fichaUser}}
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item list-group-item-dark">Damage: {{fichaUser.damage}}%</li>
+                <li class="list-group-item list-group-item-dark">Piercing: {{fichaUser.piercing}}%</li>
+                <li class="list-group-item list-group-item-dark">Critical: {{fichaUser.critical}}</li>
+              </ul>
+            {{/if}}
+              <div class="card-body">
+                <a href="#" class="btn btn-outline-light">Editar</a>
+              </div>
         </div>
-    </div>
+        <div class="card text-center mb-3" style="margin: 15px 15px; width: 100%;">
+            <div class="card-body">
+                <h5 class="card-title">Inimigo</h5>
+                <img src="\img\t2.png" class="card-img-top" style="width: 150px;" alt="...">
+              </div>
 
-    <div class="monstercard">
+            {{#if fichaMonster}}
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item list-group-item-dark">Resist: {{fichaMonster.resist}}%</li>
+                <li class="list-group-item list-group-item-dark">Incoming Boost: {{fichaMonster.incomingboost}}%</li>
+            {{/if}}
 
-    </div>
-
-    <div class="usercard">
-        <div class="combatcard">
-            
+              </ul>
+              <div class="card-body">
+                {{#if fichaMonster}}
+                    <a href="/user/monster/list" class="btn btn-outline-light">Trocar</a>
+                {{/if}}
+                <a href="/user/monster" class="btn btn-outline-light">Registrar</a>
+              </div>
         </div>
-    </div>
-</div>
+        <div class="card text-center mb-3" style="margin: 15px 15px; width: 100%">
+            <div class="card-body">
+                <h5 class="card-title">Combate</h5>
+                <img src="\img\t3.png" class="card-img-top" style="width: 150px;" alt="...">
+              </div>
+              <div class="card-body">
+                {{#if fichaMonster}}
+                <a href="#" class="btn btn-outline-light">Iniciar</a>
+                {{else}}
+                <p>Registre um inimigo para iniciar o combate!</p>
+                {{/if}}
+
+              </div>
+        </div>
+    </section>

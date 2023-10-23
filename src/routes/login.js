@@ -3,18 +3,21 @@ const Router = express.Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
 
+const tryLogar = require('../controllers/loginController');
+
 
 Router.get("/login", (req, res) =>{
-
-    res.render("login");
+    try{
+     
+    const errorMessage = req.flash('error')[0];   
+    res.status(200).render("login",{error: errorMessage});
+    }catch(error){
+        res.status(500).json({
+            erro: error
+        })
+    }
 })
 
-Router.post("/login", (req, res, next) =>{
-    passport.authenticate("local", {
-        successRedirect: "/user",
-        failureRedirect: "/cadastro",
-        failureFlash: true
-    })(req,res,next)
-})
+Router.post("/login", tryLogar.logar);
 
 module.exports = Router;

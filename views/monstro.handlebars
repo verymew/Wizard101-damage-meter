@@ -4,12 +4,10 @@
         <p clas="alerta-msg">{{error}}</p>
         {{/if}}
 
-        <form action="/cadastro/enviar" method="post">
-            Usuário: <br>
-            <input type="text" name="name">
-            </br>
-            Password: <br>
-            <input type="password" name="password">
+        {{#if userInf}}
+        <form action="/user/monster/register" method="post">
+            <br>
+            <input type="hidden" name="idcriador" value="{{userInf}}">
             </br>
             Damage: <br>
             <input type="number" name="damage">
@@ -17,8 +15,8 @@
             Piercing: <br>
             <input type="number" name="piercing">
             </br>
-            Critical Chance: <br>
-            <input type="number" name="critical">
+            Incoming Boost: <br>
+            <input type="number" name="incomingbo">
             </br>
             Resist: <br>
             <input type="number" name="resist">
@@ -28,8 +26,6 @@
               <button type="submit" class="btn btn-primary">Cadastrar</button>
             </div>
         </form>
+        {{/if}}
     </div>
 </div>
-<script>
-    //Scripts podem ser colocados dentro de formularioss;
-</script>
