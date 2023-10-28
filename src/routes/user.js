@@ -1,4 +1,4 @@
-/**
+/*
  * Rota que da acesso a pagina do usuario, apos o login.
  */
 const express = require('express');
@@ -15,29 +15,50 @@ const monsterController = require('../controllers/monsterRegistrationController'
 const fichasDatasController = require('../controllers/userController');
 const userController = require('../controllers/userController')
 
+
+/*
+    @GET
+    Retorna a ficha do usário e a ficha do monstro do usuário.
+ */
 Router.get("/user", ensureAuth, userController.recuperarDadosGerais);
 
-/*#Rota para edição do inimigo*/
-/*GET*/
+/*
+    @GET
+    Retorna a página de monstros do usuário.
+*/
 Router.get("/user/monster", ensureAuth, monsterController.paginaMonstro);
-/*Post*/
+/*
+*  @POST
+   Registra o monstro no banco de dados.
+ */
 Router.post("/user/monster/register", ensureAuth, monsterController.registrarMonstro);
 
-/*Rota de remoção de monstro*/
+/*
+    @DELETE
+    Deleta um monstro
+*/
 Router.delete("/user/:id", ensureAuth, monsterController.deletarMonstro);
 
-/*Rota para editar monstro*/
+/*
+    @GET
+    Edita um monstro
+*/
+Router.get("/user/edit/:id", ensureAuth, monsterController.paginaEditarMonstro);
 
-/*Rota para escolher monstro como principal*/
+/*
+    @PUT
+    escolhe um monstro como monstro principal
+*/
 
-//Sempre exportar o módulo
-
-/* /Rota para edição do inimigo*/
-
-/*Rota Para recuperar dados com o front*/
+/*
+    @GET
+    
+*/
 Router.get("/user/userdata", ensureAuth, fichasDatasController.recuperarDadosGerais);
 
-/*Rota para mostrar todos os monstros do usuario*/
+/*
+    @GET
+*/
 Router.get("/user/monster/list", ensureAuth, userController.listarTodosMonstros);
 
 

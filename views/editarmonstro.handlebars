@@ -4,25 +4,19 @@
         <p class="alerta-msg">{{error}}</p>
         {{/if}}
 
-        {{#if userInf}}
+        {{#if fichaMonster}}
         <form action="/user/monster/register" method="post">
-            <br>
-            <input type="hidden" name="idcriador" value="{{userInf}}">
-            </br>
-            Name: <br>
-            <input type="text" name="name">
-            </br>
             Damage: <br>
-            <input type="number" name="damage">
+            <input type="number" name="damage" value="{{damage}}">
             </br>
             Piercing: <br>
-            <input type="number" name="piercing">
+            <input type="number" name="piercing" value="{{piercing}}">
             </br>
             Incoming Boost: <br>
-            <input type="number" name="incomingbo">
+            <input type="number" name="incomingbo" value="{{incomingboost}}">
             </br>
             Resist: <br>
-            <input type="number" name="resist">
+            <input type="number" name="resist" value="{{resist}}">
             </br>
             <br>
             <div class="col-12">

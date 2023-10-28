@@ -27,6 +27,10 @@ const usuarioCadastro = new Schema ({
         type: Number,
         require: true
     },
+    email: {
+        type: String,
+        require: true
+    },
     roles: {
         type: [{ String }]
     }

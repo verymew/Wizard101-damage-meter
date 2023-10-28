@@ -1,10 +1,13 @@
 <div class="main">
     <div class="maincard">
         {{#if error}}
-        <p clas="alerta-msg">{{error}}</p>
+        <p class="alerta-msg">{{error}}</p>
         {{/if}}
 
         <form action="/cadastro/enviar" method="post">
+            E-mail: <br>
+            <input type="text" name="email">
+            </br>
             Usuário: <br>
             <input type="text" name="name">
             </br>

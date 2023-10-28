@@ -14,11 +14,11 @@ exports.criarUsuario = async (req, res) => {
     try{
 
         //Resgatando conteudo do formulario
-        const { name, password, damage, piercing, critical, resist } = req.body
+        const { email, name, password, damage, piercing, critical, resist } = req.body
 
         //Checando se o usuario(nome) ja existe
         //Como estamos lidando com banco de dados, usar função assíncrona.
-        const RegServ = new RegistrationService(name, password, damage, piercing, critical, resist);
+        const RegServ = new RegistrationService(email, name, password, damage, piercing, critical, resist);
 
         //Checar campos nulos
         const campoNulo = await RegServ.eValido();
@@ -33,6 +33,7 @@ exports.criarUsuario = async (req, res) => {
         //Passando dados para o schema
         const newUser = new Cadastro({
             name: name,
+            email: email,
             password: passHashed,
             damage: damage,
             piercing: piercing,

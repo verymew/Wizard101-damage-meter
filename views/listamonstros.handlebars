@@ -31,9 +31,10 @@
             <li class="list-group-item list-group-item-dark">Incoming Boost: {{incomingboost}}%</li>
         </ul>
         <div class="botoesM" style="display:flex;flex-direction: column;">
-            <button type="button" onclick="excluirM('{{_id}}')" class="btn btn-outline-success" style="margin: 15px 15px;">Utilizar</button>
-            <button type="submit" class="btn btn-outline-danger" style="margin: 15px 15px;">Remover</button>
-            <button type="submit" class="btn btn-outline-warning" style="margin: 15px 15px;">Editar</button>
+            <button type="button" onclick="excluirM('{{_id}}')" class="btn btn-outline-danger" style="margin: 15px 15px;">Remover</button>
+            <a href="/user/edit/{{_id}}">
+                <button type="submit" class="btn btn-outline-warning" style="margin: 15px 15px;">Editar</button>
+            </a>
         </div>
     </div>
     {{/each}}

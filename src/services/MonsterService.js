@@ -39,14 +39,15 @@ class MonstroFerramentas{
     /*
         Metódo de registro de ficha de monstro.
     */
-    async registrarMonstro(userid, damage, piercing, resist, incomingbo){
+    async registrarMonstro(userid, damage, piercing, resist, incomingbo, name){
         //Verificar campos nulos
         if(
             !userid ||
             !damage ||
             !piercing ||
             !resist ||
-            !incomingbo 
+            !incomingbo ||
+            !name
         ){
             throw new StatusError("Campos nulos.", 400);
         }
@@ -63,12 +64,14 @@ class MonstroFerramentas{
         };
 
         //Criando registro
+        //role 1 para virar main
         const Registrar = new monstroRegistro({
             criador: userid,
-            incomingboost: incomingbo,
+            nome: name,
             damage: damage,
-            piercing: piercing, 
+            piercing: piercing,
             resist: resist,
+            incomingboost: incomingbo,
             role: 1
         })
         //salvando no banco de dados
@@ -95,6 +98,15 @@ class MonstroFerramentas{
         .catch(error =>{
             throw new StatusError("Não foi deletado com sucesso.", 400);
         })
+    }
+
+    /*Procura um monstro por seu id*/
+    async getUmMonstro(idMonstro){
+        const fichaMonstro = await monstroRegistro.findOne({_id: idMonstro}).lean();
+        if(!fichaMonstro){
+            throw new StatusError("Nenhum monstro encontrado", 404)
+        }
+        return fichaMonstro;
     }
 
 }

@@ -1,3 +1,6 @@
+/*
+    Rotas de login
+*/
 const express = require('express');
 const Router = express.Router();
 const mongoose = require('mongoose');
@@ -5,7 +8,10 @@ const passport = require('passport');
 
 const tryLogar = require('../controllers/loginController');
 
-
+/*
+    @GET
+    pagina de login
+*/
 Router.get("/login", (req, res) =>{
     try{
      
@@ -18,6 +24,10 @@ Router.get("/login", (req, res) =>{
     }
 })
 
+/*
+    @POST
+    loga, através do passport, no sistema
+*/
 Router.post("/login", tryLogar.logar);
 
 module.exports = Router;

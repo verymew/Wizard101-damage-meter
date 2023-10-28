@@ -6,6 +6,10 @@ const Monstro = new Schema({
         type: mongoose.Types.ObjectId,
         required: true,
     },
+    nome: {
+        type: String,
+        require: true
+    },
     damage: {
         type: Number,
         require: true
@@ -28,5 +32,5 @@ const Monstro = new Schema({
 })
 
 
-const Monster = mongoose.model('Monstro', Monstro);
+const Monster = mongoose.model('monstrinhos', Monstro);
 module.exports = Monster; //variavel exportada;

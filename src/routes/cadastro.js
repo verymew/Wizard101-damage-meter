@@ -1,8 +1,5 @@
-/**
- * 
- * //Rotas para o cadastro (até a rota de conclusão)
- * 
- *
+/*
+ * Rotas para o cadastro 
  */
 const express = require('express');
 const router = express.Router();
@@ -13,12 +10,18 @@ require("../errors/StatusError");
 const registrationController = require("../controllers/registrationController");
 
 
-//pagina cadastro principal
+/*
+    @GET
+    Renderiza a pagina de cadastro
+*/
 router.get("/cadastro", (_req,res) =>{
     res.render("cadastro");
 })
 
-//Método post: cadastrar novo usuario
+/*
+    @POST
+    cadastra o usuário no sistema.
+*/
 router.post("/cadastro/enviar", registrationController.criarUsuario);
 
 
