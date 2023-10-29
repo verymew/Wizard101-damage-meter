@@ -1,6 +1,7 @@
 const monstroRegistro = require("../models/SchemaMonstro");
 const mongoose = require('mongoose');
 const StatusError = require("../errors/StatusError");
+const isCampoNulo = require("../utils/nullFieldValidation");
 
 class MonstroFerramentas{
 
@@ -90,7 +91,7 @@ class MonstroFerramentas{
         }
         
         return fichasMonstros;
-    }
+    };
 
     /*Deletar monstro*/
     async deletarM(idMonstro, idUser){
@@ -98,7 +99,7 @@ class MonstroFerramentas{
         .catch(error =>{
             throw new StatusError("Não foi deletado com sucesso.", 400);
         })
-    }
+    };
 
     /*Procura um monstro por seu id*/
     async getUmMonstro(idMonstro){
@@ -107,8 +108,28 @@ class MonstroFerramentas{
             throw new StatusError("Nenhum monstro encontrado", 404)
         }
         return fichaMonstro;
-    }
+    };
 
-}
+    /*dando update no monstro*/
+    async updateMonstro(idUser, idMonstro, nome, damage, piercing, incomingbo, resist){
+
+        //array com os campos
+        const dadosmonstro = [nome, damage, piercing, incomingbo, resist];
+        //ids em objeto moongoose
+        const iduser = new mongoose.Types.ObjectId(idUser);
+        const idmonster = new mongoose.Types.ObjectId(idMonstro);
+
+        //dando update em apenas um arquivo
+        await monstroRegistro.updateOne({ _id: idmonster, criador: iduser}, {
+            nome: nome,
+            damage: damage,
+            piercing: piercing,
+            incomingbo: incomingbo,
+            resist: resist
+        }).catch(error => {
+            throw new StatusError("Não foi possível atualizar o registro.", 400);
+        });
+    }
+};
 
 module.exports = MonstroFerramentas;

@@ -46,10 +46,10 @@ Router.delete("/user/:id", ensureAuth, monsterController.deletarMonstro);
 Router.get("/user/edit/:id", ensureAuth, monsterController.paginaEditarMonstro);
 
 /*
-    @PUT
-    escolhe um monstro como monstro principal
+    @POST
+    Recebe a alteração do monstro e edita
 */
-
+Router.post("/user/edit/update", monsterController.putEditarMonstro);
 /*
     @GET
     

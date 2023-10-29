@@ -4,23 +4,27 @@
         <p class="alerta-msg">{{error}}</p>
         {{/if}}
 
-        {{#if fichaMonster}}
-        <form action="/user/monster/register" method="post">
+        {{#if fichaM}}
+        <form action="/user/edit/update" method="post">
+            <input type="hidden" name="idmonstro" value="{{fichaM._id}}">
+            Name: <br>
+            <input type="text" name="nome" value="{{fichaM.nome}}">
+            </br>
             Damage: <br>
-            <input type="number" name="damage" value="{{damage}}">
+            <input type="number" name="damage" value="{{fichaM.damage}}">
             </br>
             Piercing: <br>
-            <input type="number" name="piercing" value="{{piercing}}">
+            <input type="number" name="piercing" value="{{fichaM.piercing}}">
             </br>
             Incoming Boost: <br>
-            <input type="number" name="incomingbo" value="{{incomingboost}}">
+            <input type="number" name="incomingbo" value="{{fichaM.incomingboost}}">
             </br>
             Resist: <br>
-            <input type="number" name="resist" value="{{resist}}">
+            <input type="number" name="resist" value="{{fichaM.resist}}">
             </br>
             <br>
             <div class="col-12">
-              <button type="submit" class="btn btn-primary">Cadastrar</button>
+              <button type="submit" class="btn btn-primary">Atualizar</button>
             </div>
         </form>
         {{/if}}

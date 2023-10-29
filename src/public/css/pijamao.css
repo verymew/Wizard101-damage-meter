@@ -16,12 +16,14 @@
     text-align: center;
     margin: auto;
     display: flex;
+    margin: 20px auto;
 }
 
 /*#Header*/
 .header{
     text-align: center;
     margin: auto;
+    margin: 20px auto;
 }
 
 /*/Header*/

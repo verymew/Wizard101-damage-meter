@@ -4,6 +4,8 @@ const userBase = require("../models/SchemaCadastro");
 const monstroFicha = require("../models/SchemaMonstro");
 const MonstroFerramentas = require("../services/MonsterService");
 const StatusError = require("../errors/StatusError");
+//funções
+const isNulo = require("../utils/nullFieldValidation");
 
 
 /*
@@ -51,7 +53,9 @@ exports.registrarMonstro = async (req, res) => {
     */
 
 };
-
+/*
+    @DELETE
+*/
 exports.deletarMonstro = async(req, res) => {
     try{
         const idUser = new mongoose.Types.ObjectId(req.user.id);
@@ -71,7 +75,10 @@ exports.deletarMonstro = async(req, res) => {
         }) 
     }
 };
-    
+
+/*
+    @GET
+*/
 exports.paginaEditarMonstro = async(req, res) => {
     try{
     //Requisita os parametros do endereço
@@ -82,14 +89,40 @@ exports.paginaEditarMonstro = async(req, res) => {
     const fichaM = await ferramentaM.getUmMonstro(idMonstro);
 
     //Envia para a pagina
-    res.status(200).json({
-        damage: fichaM.damage
-    })
+    res.status(200).render("editarmonstro", { fichaM })
 
     }catch(error){
 
-        return res.status(400).json({
-            erro: error.message
-        })
+        return res.status(400).render("editarmonstro");
+    }
+};
+/*
+    @PUT
+*/
+exports.putEditarMonstro = async(req, res) => {
+    try{
+        //recuperar dados do body;
+        const { idmonstro, nome, damage, piercing, incomingbo, resist } = req.body;
+        const arraycampos = [nome, damage, piercing, incomingbo, resist];
+
+        //dar update no banco de dados
+        const ferramentaM = new MonstroFerramentas();
+        //verificar campos nulos
+        if(isNulo(arraycampos)){
+            throw new StatusError("Campos nulos.", 400)
+        };
+
+        //realizar o update
+        await ferramentaM.updateMonstro(req.user.id, idmonstro, nome, damage, piercing, incomingbo, resist);
+
+        //redirecionar para a pagina de editar monstros
+        res.status(200).redirect("/user");
+
+    }catch(error){
+
+        return res.status(error.codigoStatus || 500).json({
+            erro: error.message,
+            status: error.codigoStatus
+        }) 
     }
 };
