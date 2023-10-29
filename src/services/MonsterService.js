@@ -112,15 +112,13 @@ class MonstroFerramentas{
 
     /*dando update no monstro*/
     async updateMonstro(idUser, idMonstro, nome, damage, piercing, incomingbo, resist){
-
-        //array com os campos
-        const dadosmonstro = [nome, damage, piercing, incomingbo, resist];
-        //ids em objeto moongoose
+        
+        //objetos moongose
+        const idmonstro = new mongoose.Types.ObjectId(idMonstro);
         const iduser = new mongoose.Types.ObjectId(idUser);
-        const idmonster = new mongoose.Types.ObjectId(idMonstro);
 
         //dando update em apenas um arquivo
-        await monstroRegistro.updateOne({ _id: idmonster, criador: iduser}, {
+        await monstroRegistro.updateOne({ _id: idmonstro, criador: iduser}, {
             nome: nome,
             damage: damage,
             piercing: piercing,

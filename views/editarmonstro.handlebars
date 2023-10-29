@@ -1,14 +1,14 @@
 <div class="main">
     <div class="maincard">
         {{#if error}}
-        <p class="alerta-msg">{{error}}</p>
+        <p class="alert alert-danger">{{error}}</p>
         {{/if}}
 
         {{#if fichaM}}
         <form action="/user/edit/update" method="post">
             <input type="hidden" name="idmonstro" value="{{fichaM._id}}">
             Name: <br>
-            <input type="text" name="nome" value="{{fichaM.nome}}">
+            <input type="text" name="nome" value="{{fichaM.nome}}"> 
             </br>
             Damage: <br>
             <input type="number" name="damage" value="{{fichaM.damage}}">
@@ -26,6 +26,7 @@
             <div class="col-12">
               <button type="submit" class="btn btn-primary">Atualizar</button>
             </div>
+
         </form>
         {{/if}}
     </div>

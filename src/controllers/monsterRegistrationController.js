@@ -112,7 +112,7 @@ exports.putEditarMonstro = async(req, res) => {
             throw new StatusError("Campos nulos.", 400)
         };
 
-        //realizar o update
+        //atualizar o monstro
         await ferramentaM.updateMonstro(req.user.id, idmonstro, nome, damage, piercing, incomingbo, resist);
 
         //redirecionar para a pagina de editar monstros
@@ -120,9 +120,6 @@ exports.putEditarMonstro = async(req, res) => {
 
     }catch(error){
 
-        return res.status(error.codigoStatus || 500).json({
-            erro: error.message,
-            status: error.codigoStatus
-        }) 
+        return res.status(error.codigoStatus || 500).render("editarmonstro", {error});
     }
 };

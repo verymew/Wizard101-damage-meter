@@ -37,6 +37,6 @@ exports.listarTodosMonstros = async(req, res) => {
 
     }catch(error){
 
-        return res.status(error.codigoStatus || 500).redirect("/user", {error: error.message})
+        return res.status(error.codigoStatus || 500).redirect("/user", {error})
     }
 };
